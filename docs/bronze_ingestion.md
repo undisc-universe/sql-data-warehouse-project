@@ -28,6 +28,7 @@ The solution is designed to:
 
 ## High-Level Architecture
 
+```text
 CSV Files (Windows filesystem)
 ↓
 WSL (psql client, bash automation)
@@ -35,7 +36,7 @@ WSL (psql client, bash automation)
 PostgreSQL (Windows service)
 ↓
 Bronze Schema (raw ingestion)
-
+```
 ---
 
 ## Key Design Decisions
@@ -60,21 +61,28 @@ Bronze Schema (raw ingestion)
 
 ## Directory Structure
 
+
+```text
 sql-data-warehouse-project/
-│
 ├── scripts/
-│ ├── init_database.sql # Drop/create DB + schemas (DEV only)
-│ ├── create_tables.sql # Bronze table definitions
-│ ├── load_crm.sql # CRM CSV ingestion (\copy)
-│ ├── load_erp.sql # ERP CSV ingestion (\copy)
-│ └── verify_load_counts.sql # Row count validation
+│   ├── init_database.sql        # Drop/create DB + schemas (DEV only)
+│   ├── create_tables.sql        # Bronze table definitions
+│   ├── load_crm.sql             # CRM CSV ingestion (\copy)
+│   ├── load_erp.sql             # ERP CSV ingestion (\copy)
+│   └── verify_load_counts.sql   # Row count validation
 │
 ├── run/
-│ └── load_bronze.sh # Bash orchestration script
+│   └── load_bronze.sh           # Bash orchestration script
 │
 ├── datasets/
-│ ├── source_crm/
-│ └── source_erp/
+│   ├── source_crm/
+│   └── source_erp/
+│
+├── docs/
+│   └── bronze_setup.md
+│
+└── README.md
+```
 
 
 ---
