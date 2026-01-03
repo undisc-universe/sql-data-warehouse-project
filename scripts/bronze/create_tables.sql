@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS bronze.erp_loc_a101;
 DROP TABLE IF EXISTS bronze.erp_cust_az12;
 
 CREATE TABLE bronze.crm_cust_info (
-    cst_info INT,
+    cst_id INT,
     cst_key VARCHAR(50),
     cst_firstname VARCHAR(50),
     cst_lastname VARCHAR(50),

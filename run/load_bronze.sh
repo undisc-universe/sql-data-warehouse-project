@@ -11,14 +11,14 @@ fi
 
 
 # 1. Create database & schemas (connect to postgres!)
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_ADMIN" -v ON_ERROR_STOP=1 -f scripts/init_database.sql
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_ADMIN" -v ON_ERROR_STOP=1 -f scripts/bronze/init_database.sql
 
 # 2. Create tables
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f scripts/create_tables.sql
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f scripts/bronze/create_tables.sql
 
 # 3. Load data
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f scripts/load_crm.sql
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f scripts/load_erp.sql
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f scripts/bronze/load_crm.sql
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f scripts/bronze/load_erp.sql
 
 # 4. Verify
 psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_DW" -v ON_ERROR_STOP=1 -f tests/verify_load_counts.sql
