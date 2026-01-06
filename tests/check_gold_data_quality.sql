@@ -65,7 +65,7 @@ SELECT DISTINCT gender FROM gold.dim_customers;
 -- Expected Results: 0 rows
 
 SELECT
-    prd_key, COUNT(*) AS duplciate_row_count
+    prd_key, COUNT(*) AS duplicate_row_count
 FROM (
     SELECT
     pn.prd_id,
@@ -94,7 +94,7 @@ HAVING COUNT(*) > 1;
 -- Foreign Key Integrity (Dimensions)
 -- Expected Results: 0 rows
 SELECT
-    *
+    fs.order_number
 FROM
     gold.fact_sales fs
 LEFT JOIN 

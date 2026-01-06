@@ -1,4 +1,5 @@
 -- 1. Build Customer's Dimensional Table
+\echo '>> Creating VIEW gold.dim_customers'
 CREATE OR REPLACE VIEW gold.dim_customers AS 
 SELECT
     ROW_NUMBER() OVER(ORDER BY ci.cst_id) AS customer_key, -- Surrogate Key to connect the data model
@@ -26,11 +27,15 @@ LEFT JOIN
 ON
     ci.cst_key = la.cid;
 
+\echo 'dim_customers created successfully'
+
 -- 2. Build Product's Dimensional Table
 -- Business Rule: Keep only recent data; if End Date
 -- is NULL then it is the current information of the Product
 
 -- Convert the type 2 table into a type with no historical data !
+\echo ''
+\echo '>> Creating VIEW gold.dim_products'
 CREATE OR REPLACE VIEW gold.dim_products AS 
 SELECT
     ROW_NUMBER() OVER(ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key,
@@ -52,10 +57,14 @@ ON
     pn.cat_id = pc.id
 WHERE prd_end_dt IS NULL;
 
+\echo 'dim_products created successfully'
+
 
 
 -- 3. Build Sales Factual Table
 -- 1st Step: Get the surrogate keys from the gold dim tables to connect fact and dim data in the future
+\echo ''
+\echo '>> Creating VIEW gold.fact_sales'
 CREATE OR REPLACE VIEW gold.fact_sales AS 
 SELECT
     -- DIMENSION KEYS
@@ -76,4 +85,7 @@ FROM
 LEFT JOIN 
     gold.dim_customers ct ON sd.sls_cust_id = ct.customer_id
 LEFT JOIN
-    gold.dim_products pd ON sd.sls_prd_key = pd.product_number
+    gold.dim_products pd ON sd.sls_prd_key = pd.product_number;
+
+\echo 'fact_sales created successfully'
+\echo ''
