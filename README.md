@@ -3,7 +3,9 @@
 Welcome to my **Modern Data Warehouse** project! 🚀  
 This repository showcases the design and implementation of a clean, scalable, and analytics-ready **Data Warehouse built with PostgreSQL**. The goal is to transform raw operational data into meaningful insights that support data-driven decision-making.
 
-Whether you’re a **data engineer**, **data analyst**, or just curious about modern data warehousing practices, feel free to explore, learn, and reuse this project.
+The Data Warehouse implemented in this project is done by using a Medallion Architecture design and should look as close to the diagaram below.
+
+![Data Warehouse Diagram](diagrams/DWH_POSTGRES_PROJECT.drawio.svg)
 
 ---
 
