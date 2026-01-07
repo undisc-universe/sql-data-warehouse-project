@@ -5,7 +5,7 @@ This repository showcases the design and implementation of a clean, scalable, an
 
 The Data Warehouse implemented in this project is done by using a Medallion Architecture design and should look as close to the diagaram below.
 
-![Data Warehouse Diagram](diagrams/DWH_POSTGRES_PROJECT.drawio.svg)
+![Data Warehouse Diagram](docs/diagrams/DWH_POSTGRES_PROJECT.drawio.svg)
 
 ---
 
